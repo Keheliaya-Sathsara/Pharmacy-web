@@ -40,11 +40,9 @@ class _MyWebSiteState extends State<MyWebSite> {
               },
             ),
             _progress < 1
-                ? Container(
-                    child: LinearProgressIndicator(
-                      value: _progress,
-                    ),
-                  )
+                ? LinearProgressIndicator(
+                  value: _progress,
+                )
                 : const SizedBox()
           ],
         ),
