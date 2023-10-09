@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:megha1_parmacy/my_website.dart';
 import 'package:metaballs/dart_ui_real.dart';
 import 'package:metaballs/metaballs.dart';
+// ignore: unused_import
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
-  runApp(const MyApp());
+  Future.delayed(const Duration(milliseconds: 5000), () {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -80,8 +84,20 @@ class HomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyWebSite(),
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const MyWebSite(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        const begin = Offset(3.0, 0.0);
+                        const end = Offset.zero;
+                        const curve = Curves.easeInOut;
+                        var tween = Tween(begin: begin, end: end)
+                            .chain(CurveTween(curve: curve));
+                        var offsetAnimation = animation.drive(tween);
+                        return SlideTransition(
+                            position: offsetAnimation, child: child);
+                      },
                     ),
                   );
                 },

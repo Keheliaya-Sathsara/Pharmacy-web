@@ -107,5 +107,5 @@ flutter_native_splash:
   color: "#FFFFFF"
   image: "assets/logo.png"
   branding: "assets/bn.png"
-  color_dark: "#121212"
+  # color_dark: "#121212"
   web: false
